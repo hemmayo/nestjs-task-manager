@@ -1,12 +1,24 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+const config = {
+  production: {
+    host: 'ruby.db.elephantsql.com',
+    username: 'zqbzdgmb',
+    password: 'sswHJudNqrvFM1b8gDwdGWcAgdnpBWE4',
+    database: 'zqbzdgmb',
+  },
+  development: {
+    host: 'localhost',
+    username: 'postgres',
+    password: 'postgres',
+    database: 'task-manager',
+  },
+}['development'];
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'ruby.db.elephantsql.com',
   port: 5432,
-  username: 'zqbzdgmb',
-  password: 'sswHJudNqrvFM1b8gDwdGWcAgdnpBWE4',
-  database: 'zqbzdgmb',
-  entities: [__dirname + '/../**/*.entity.ts'],
+  entities: [__dirname + '/../**/*.entity.js'],
   synchronize: true,
+  ...config,
 };
